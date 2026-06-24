@@ -75,6 +75,11 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 │   │   └── morning.md           # /morning pour démarrer la journée
 │   └── skills/
 │       └── recherche-actualites/ # Skill veille personnalisée
+├── livrables/                   # Productions concrètes de mes projets
+│   ├── applications/            # Applications livrées
+│   ├── cabinet/                 # Livrables liés au cabinet
+│   ├── sites-web/               # Sites et landings (ex : iaentrepreneur / Students IA)
+│   └── youTube/                 # Contenus YouTube
 └── module-installs/
     └── jarvis-install/          # Module d'installation initial
 ```
@@ -85,6 +90,7 @@ Une fois que je confirme, Claude met à jour le fichier en question et ajoute un
 | `context/import/` | Documents externes (PDFs, exports, notes) à analyser |
 | `.claude/commands/` | Commandes personnalisées de mon Jarvis |
 | `.claude/skills/` | Skills (super-pouvoirs) de mon Jarvis |
+| `livrables/` | Productions concrètes de mes projets, classées par type (applications, cabinet, sites-web, youTube) |
 | `module-installs/` | Modules d'installation (initial et futurs) |
 
 ---

@@ -53,6 +53,7 @@ Développeur fullstack Angular / C# .NET avec 5 ans d'expérience. Je conçois e
 Liste des projets ou chantiers actifs sur lesquels je veux que Claude m'aide :
 
 - **Side project / Projet d'école :** application de gestion scolaire (gestion des élèves, appels, absences, agenda, devoirs, messagerie instantanée)
+- **Students IA (iaentrepreneur) :** nouveau projet perso. Marketplace mettant en relation des entreprises avec des experts IA certifiés (NLP/LLM, MLOps, Computer Vision, Data Strategy...), avec une Académie de certification, paiement sous séquestre et modèle à la commission. Premier livrable : site vitrine en Angular 21 (standalone, signals, lazy loading, multi-pages) + landing statique, sous `livrables/sites-web/iaentrepreneur/`
 - **Recherche d'emploi :** recherche active d'un nouveau poste de développeur fullstack
 
 ---

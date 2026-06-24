@@ -7,6 +7,18 @@
 
 ---
 
+## 2026-06-24
+
+### Nouveau projet perso : Students IA (iaentrepreneur)
+- Pierre-Richard démarre un nouveau projet personnel : **Students IA**, une marketplace mettant en relation des entreprises avec des experts IA certifiés (NLP/LLM, MLOps, Computer Vision, Data Strategy, etc.)
+- Concept : sélection/certification des experts via une Académie IA, matching entreprise/expert, paiement sécurisé sous séquestre, modèle à la commission (Business 12 %, Expert 8 %)
+- Premier livrable produit : site vitrine en Angular 21 (standalone, signals, lazy loading, routage multi-pages : Accueil, Experts, Comment ça marche, Académie, Tarifs) + une landing statique générée depuis un brief Claude Design
+- Localisation dans le workspace : `livrables/sites-web/iaentrepreneur/` (app `students-ia/` + `index.html`)
+- À noter : apparition d'une arborescence `livrables/` (applications, cabinet, sites-web, youTube) qui structure désormais la production de livrables. Non décrite dans CLAUDE.md, à formaliser si elle se confirme dans la durée
+- Ajout du projet dans CONTEXT.md (section projets en cours)
+
+---
+
 ## 2026-06-18
 
 ### Installation initiale du Jarvis
