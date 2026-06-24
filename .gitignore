@@ -1,0 +1,89 @@
+# ─── SECRETS & CLÉS API ───────────────────────────────────────────────────────
+# Ne jamais commiter ces fichiers. Utiliser .env.example pour partager la structure.
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+.env.test
+
+# Patterns de fichiers secrets
+*.key
+*.pem
+*.p12
+*.pfx
+*.cert
+*.crt
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+*.secret
+*secret*
+*password*
+*credentials*
+auth.json
+service-account.json
+
+# ─── SYSTÈME ──────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Desktop.ini
+
+# ─── DÉPENDANCES ──────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# ─── BUILD & DIST ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.cache/
+.parcel-cache/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+target/
+bin/
+obj/
+
+# ─── ÉDITEURS & IDE ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ─── LOGS & TEMP ──────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.temp
+.temp/
+.tmp/
