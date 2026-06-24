@@ -1,0 +1,9 @@
+[build]
+  base    = "livrables/sites-web/iaentrepreneur/students-ia"
+  command = "npm install --include=dev && npm run build"
+  publish = "dist/students-ia/browser"
+
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
