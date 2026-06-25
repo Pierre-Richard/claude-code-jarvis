@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StudentsIA.Application.Common;
 using StudentsIA.Domain.Entities;
 
 namespace StudentsIA.Infrastructure.Persistence;
@@ -9,7 +10,7 @@ namespace StudentsIA.Infrastructure.Persistence;
 /// (<c>gen_random_uuid()</c> / <c>now()</c>) pour que les inserts directs via Supabase fonctionnent aussi.
 /// La convention snake_case est appliquée dans la configuration du DbContext (Program.cs).
 /// </summary>
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options), IApplicationDbContext
 {
     public DbSet<Profile> Profiles => Set<Profile>();
     public DbSet<Company> Companies => Set<Company>();

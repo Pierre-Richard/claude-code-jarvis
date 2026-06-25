@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using StudentsIA.Api;
+using StudentsIA.Application;
+using StudentsIA.Application.Common;
 using StudentsIA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection manquante.");
 builder.Services.AddInfrastructure(connectionString);
+
+// --- Logique métier + identité de l'utilisateur courant ---
+builder.Services.AddApplication();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
 // --- Authentification : on valide les JWT émis par Supabase Auth ---
 // Supabase signe les tokens et expose un JWKS sous {Url}/auth/v1.

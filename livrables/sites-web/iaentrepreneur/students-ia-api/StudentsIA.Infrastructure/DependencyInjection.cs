@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using StudentsIA.Application.Common;
 using StudentsIA.Infrastructure.Persistence;
 
 namespace StudentsIA.Infrastructure;
@@ -12,6 +13,9 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(connectionString)
                    .UseSnakeCaseNamingConvention());
+
+        // Expose le DbContext via son abstraction à la couche Application.
+        services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<AppDbContext>());
 
         return services;
     }
