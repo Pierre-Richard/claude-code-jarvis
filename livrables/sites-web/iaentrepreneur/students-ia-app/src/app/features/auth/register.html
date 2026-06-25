@@ -43,8 +43,11 @@
       <div class="flex flex-col gap-4">
         <div><label class="lbl">Nom complet</label><input class="field h-12" [value]="name()" (input)="name.set($any($event.target).value)" placeholder="Votre nom" /></div>
         <div><label class="lbl">E-mail</label><input class="field h-12" type="email" [value]="email()" (input)="email.set($any($event.target).value)" placeholder="vous@entreprise.com" /></div>
-        <div><label class="lbl">Mot de passe</label><input class="field h-12" type="password" [value]="pass()" (input)="pass.set($any($event.target).value)" placeholder="8 caractères minimum" /></div>
-        <button (click)="submit()" class="btn-grad h-[50px] text-base mt-[6px]">Créer mon compte</button>
+        <div><label class="lbl">Mot de passe</label><input class="field h-12" type="password" [value]="pass()" (input)="pass.set($any($event.target).value)" (keydown.enter)="submit()" placeholder="8 caractères minimum" /></div>
+        @if (error()) {
+          <div class="bg-[#fdecec] text-[#e5484d] text-sm rounded-xl px-4 py-3">{{ error() }}</div>
+        }
+        <button (click)="submit()" [disabled]="loading()" class="btn-grad h-[50px] text-base mt-[6px] disabled:opacity-60">{{ loading() ? 'Création…' : 'Créer mon compte' }}</button>
         <p class="text-xs text-[#9aa3b2] text-center leading-[1.5] mt-[2px]">En créant un compte, vous acceptez nos conditions d'utilisation et notre politique de confidentialité.</p>
       </div>
     </div>

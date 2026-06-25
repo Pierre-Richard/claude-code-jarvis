@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -10,6 +11,7 @@ export const routes: Routes = [
   // Application (shell connecté)
   {
     path: 'app',
+    canActivate: [authGuard],
     loadComponent: () => import('./layout/shell').then((m) => m.ShellComponent),
     children: [
       { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.DashboardComponent), title: 'Tableau de bord — IApreneur' },

@@ -40,7 +40,7 @@
         @if (menuOpen()) {
           <div class="absolute bottom-[calc(100%+8px)] left-0 right-0 bg-white border border-line rounded-xl shadow-[0_14px_34px_rgba(10,22,40,.12)] p-[6px] z-30">
             <a class="nav-link" routerLink="/app/profile" (click)="menuOpen.set(false)"><app-icon name="user" [size]="17" /><span>Mon profil</span></a>
-            <a class="nav-link text-[#e5484d]" routerLink="/login" (click)="menuOpen.set(false)"><app-icon name="logout" [size]="17" /><span>Se déconnecter</span></a>
+            <a class="nav-link text-[#e5484d]" (click)="logout()"><app-icon name="logout" [size]="17" /><span>Se déconnecter</span></a>
           </div>
         }
       </div>

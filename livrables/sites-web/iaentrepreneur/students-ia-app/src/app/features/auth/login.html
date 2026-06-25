@@ -27,9 +27,12 @@
             <label class="text-[13px] font-semibold text-ink-soft">Mot de passe</label>
             <a class="text-[13px] text-brand-indigo font-semibold cursor-pointer">Mot de passe oublié ?</a>
           </div>
-          <input class="field h-12" type="password" [value]="pass()" (input)="pass.set($any($event.target).value)" placeholder="Votre mot de passe" />
+          <input class="field h-12" type="password" [value]="pass()" (input)="pass.set($any($event.target).value)" (keydown.enter)="submit()" placeholder="Votre mot de passe" />
         </div>
-        <button (click)="submit()" class="btn-grad h-[50px] text-base mt-[6px]">Se connecter</button>
+        @if (error()) {
+          <div class="bg-[#fdecec] text-[#e5484d] text-sm rounded-xl px-4 py-3">{{ error() }}</div>
+        }
+        <button (click)="submit()" [disabled]="loading()" class="btn-grad h-[50px] text-base mt-[6px] disabled:opacity-60">{{ loading() ? 'Connexion…' : 'Se connecter' }}</button>
       </div>
     </div>
   </div>

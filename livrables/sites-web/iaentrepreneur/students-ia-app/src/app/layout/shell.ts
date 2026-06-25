@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd } fro
 import { filter } from 'rxjs';
 import { IconComponent } from '../ui/icon';
 import { AppState } from '../core/state/app-state';
+import { AuthService } from '../core/auth/auth.service';
 import { Role } from '../models/data';
 
 interface NavItem { label: string; icon: string; route: string; badge?: string; roles: Role[]; }
@@ -15,6 +16,7 @@ interface NavItem { label: string; icon: string; route: string; badge?: string; 
 })
 export class ShellComponent {
   protected readonly state = inject(AppState);
+  private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   protected readonly role = this.state.role;
   protected readonly menuOpen = signal(false);
@@ -58,5 +60,11 @@ export class ShellComponent {
 
   protected goPrimary(): void {
     this.router.navigateByUrl('/app/missions/new');
+  }
+
+  protected async logout(): Promise<void> {
+    this.menuOpen.set(false);
+    await this.auth.signOut();
+    await this.router.navigateByUrl('/login');
   }
 }

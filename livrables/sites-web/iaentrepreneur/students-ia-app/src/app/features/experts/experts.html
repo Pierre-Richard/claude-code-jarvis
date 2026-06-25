@@ -18,6 +18,9 @@
     </div>
   </div>
 
+  @if (loading()) {
+    <div class="text-[13px] text-muted mb-4">Chargement des experts…</div>
+  } @else {
   <div class="text-[13px] text-muted mb-4">{{ filtered().length }} experts certifiés correspondent à votre recherche</div>
 
   @if (filtered().length) {
@@ -57,5 +60,6 @@
       <p class="text-sm text-muted leading-[1.55] max-w-[360px] mx-auto mb-[22px]">Élargissez vos critères pour découvrir d'autres experts certifiés.</p>
       <button (click)="reset()" class="btn-ghost h-[42px] px-5 text-sm">Réinitialiser les filtres</button>
     </div>
+  }
   }
 </div>
