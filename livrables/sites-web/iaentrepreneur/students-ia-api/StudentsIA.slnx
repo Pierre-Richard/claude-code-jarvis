@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="StudentsIA.Api/StudentsIA.Api.csproj" />
+  <Project Path="StudentsIA.Application/StudentsIA.Application.csproj" />
+  <Project Path="StudentsIA.Domain/StudentsIA.Domain.csproj" />
+  <Project Path="StudentsIA.Infrastructure/StudentsIA.Infrastructure.csproj" />
+</Solution>

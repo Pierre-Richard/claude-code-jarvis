@@ -1,0 +1,128 @@
+<!-- ENTREPRISE -->
+@if (role()==='company') {
+  <div class="max-w-[1180px]">
+    <div class="grid grid-cols-3 gap-[18px] mb-[26px]">
+      @for (s of companyStats; track s.label) {
+        <div class="card p-[22px]">
+          <div class="flex items-center justify-between mb-[14px]">
+            <span class="text-[13px] text-muted font-medium">{{ s.label }}</span>
+            <span class="w-9 h-9 rounded-[10px] bg-[#f3f4fe] flex items-center justify-center text-brand-indigo"><app-icon [name]="s.icon" [size]="18" /></span>
+          </div>
+          <div class="text-[34px] font-extrabold tracking-[-0.02em]">{{ s.value }}</div>
+          <div class="text-[13px] text-[#16a34a] font-semibold mt-1">{{ s.delta }}</div>
+        </div>
+      }
+    </div>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold m-0">Mes missions</h2>
+      <span class="text-[13px] text-muted">{{ companyMissions.length }} missions</span>
+    </div>
+    <div class="flex flex-col gap-3">
+      @for (m of companyMissions; track m.id) {
+        <div (click)="open(m.id)" class="card p-[20px] px-[22px] flex items-center gap-5 cursor-pointer transition-transform hover:-translate-y-[2px]">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-[10px] mb-[6px]">
+              <span class="font-bold text-base">{{ m.title }}</span>
+              <span [attr.style]="badge(m.status)">{{ m.status }}</span>
+            </div>
+            <div class="text-[13px] text-muted">{{ m.expertName ? m.expertName + ' · ' : '' }}Secteur {{ m.secteur }}</div>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <div class="text-xs text-[#9aa3b2]">Budget</div>
+            <div class="font-bold text-base">{{ euro(m.budget) }}</div>
+          </div>
+          <span class="text-[#c2c8d4]"><app-icon name="chevronRight" [size]="20" /></span>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- EXPERT -->
+@if (role()==='expert') {
+  <div class="max-w-[1180px]">
+    <div class="grid grid-cols-3 gap-[18px] mb-[26px]">
+      @for (s of expertStats; track s.label) {
+        <div class="card p-[22px]">
+          <div class="flex items-center justify-between mb-[14px]">
+            <span class="text-[13px] text-muted font-medium">{{ s.label }}</span>
+            <span class="w-9 h-9 rounded-[10px] bg-[#f3f4fe] flex items-center justify-center text-brand-indigo"><app-icon [name]="s.icon" [size]="18" /></span>
+          </div>
+          <div class="text-[34px] font-extrabold tracking-[-0.02em]">{{ s.value }}</div>
+          <div class="text-[13px] text-[#16a34a] font-semibold mt-1">{{ s.delta }}</div>
+        </div>
+      }
+    </div>
+    <div class="grid grid-cols-[1.4fr_1fr] gap-[22px] items-start">
+      <div>
+        <h2 class="text-lg font-bold mb-4">Propositions de mission</h2>
+        <div class="flex flex-col gap-[14px]">
+          @for (p of proposals; track p.id) {
+            <div class="card p-[20px] px-[22px]">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <span class="font-bold text-base">{{ p.title }}</span>
+                <span class="bg-[#f1f3f8] text-ink-soft text-xs font-semibold px-[10px] py-1 rounded-lg whitespace-nowrap">{{ p.secteur }}</span>
+              </div>
+              <div class="text-[13px] text-muted mb-[6px]">{{ p.company }}</div>
+              <p class="text-sm text-ink-soft leading-[1.55] mb-4">{{ p.desc }}</p>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-[15px]">{{ euro(p.budget) }}</span>
+                <div class="flex gap-[10px]">
+                  <button class="btn-ghost h-[38px] px-4 text-sm">Refuser</button>
+                  <button class="btn-grad h-[38px] px-[18px] text-sm" (click)="open('m1')">Accepter</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <h2 class="text-lg font-bold mb-4">Mes missions en cours</h2>
+        <div class="flex flex-col gap-3">
+          @for (m of expertMissions; track m.id) {
+            <div (click)="open(m.id)" class="card p-[18px] cursor-pointer">
+              <div class="mb-[6px]"><span [attr.style]="badge(m.status)">{{ m.status }}</span></div>
+              <div class="font-bold text-[15px] mb-1">{{ m.title }}</div>
+              <div class="text-[13px] text-muted">{{ m.company }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- ADMIN -->
+@if (role()==='admin') {
+  <div class="max-w-[1180px]">
+    <div class="grid grid-cols-3 gap-[18px] mb-[26px]">
+      @for (s of adminStats; track s.label) {
+        <div class="card p-[22px]">
+          <div class="flex items-center justify-between mb-[14px]">
+            <span class="text-[13px] text-muted font-medium">{{ s.label }}</span>
+            <span class="w-9 h-9 rounded-[10px] bg-[#f3f4fe] flex items-center justify-center text-brand-indigo"><app-icon [name]="s.icon" [size]="18" /></span>
+          </div>
+          <div class="text-[34px] font-extrabold tracking-[-0.02em]">{{ s.value }}</div>
+          <div class="text-[13px] text-muted font-medium mt-1">{{ s.delta }}</div>
+        </div>
+      }
+    </div>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold m-0">Experts en attente de validation</h2>
+      <button class="btn-ghost h-[38px] px-4 text-sm" (click)="go('/app/admin/validation')">Tout voir</button>
+    </div>
+    <div class="flex flex-col gap-3">
+      @for (e of pending; track e.id) {
+        <div class="card p-[20px] px-[22px] flex items-center gap-5 cursor-pointer transition-transform hover:-translate-y-[2px]" (click)="go('/app/admin/validation')">
+          <div class="w-11 h-11 rounded-xl grad-135 flex items-center justify-center text-white font-bold">{{ e.initials }}</div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-[15px]">{{ e.name }}</div>
+            <div class="text-[13px] text-muted">{{ e.role }} · {{ e.years }} ans</div>
+          </div>
+          <span class="bg-[#fef3c7] text-[#b45309] text-xs font-semibold px-[11px] py-1 rounded-full">À valider</span>
+          <span class="text-[#c2c8d4]"><app-icon name="chevronRight" [size]="20" /></span>
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,52 @@
+<div class="min-h-screen grid grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] bg-white">
+  <!-- Panneau gradient -->
+  <div class="grad-155 text-white px-[52px] py-14 flex flex-col justify-between relative overflow-hidden">
+    <div class="absolute w-[380px] h-[380px] rounded-full bg-white/10 -top-[120px] -right-[120px]"></div>
+    <div class="absolute w-[260px] h-[260px] rounded-full bg-white/[.08] -bottom-20 -left-[60px]"></div>
+    <div class="flex items-center gap-3 relative">
+      <div class="w-[38px] h-[38px] rounded-[11px] bg-white/20 flex items-center justify-center font-extrabold text-lg">I</div>
+      <span class="font-bold text-[17px] tracking-[-0.02em]">IApreneur</span>
+    </div>
+    <div class="relative">
+      <h1 class="text-[40px] font-extrabold tracking-[-0.025em] leading-[1.12] mb-[18px]">La marketplace des experts IA certifiés.</h1>
+      <p class="text-lg leading-[1.6] opacity-90 max-w-[420px]">Des consultants seniors, sélectionnés et certifiés par notre Académie, pour réussir vos projets d'intelligence artificielle.</p>
+    </div>
+    <div class="relative flex flex-col gap-[14px]">
+      <div class="flex items-center gap-[11px] text-[15px]"><span class="w-6 h-6 rounded-[7px] bg-white/[.18] flex items-center justify-center"><app-icon name="check" [size]="14" /></span>Experts vérifiés et certifiés</div>
+      <div class="flex items-center gap-[11px] text-[15px]"><span class="w-6 h-6 rounded-[7px] bg-white/[.18] flex items-center justify-center"><app-icon name="check" [size]="14" /></span>Matching en moins de 24 heures</div>
+      <div class="flex items-center gap-[11px] text-[15px]"><span class="w-6 h-6 rounded-[7px] bg-white/[.18] flex items-center justify-center"><app-icon name="check" [size]="14" /></span>Paiement sécurisé à la livraison</div>
+    </div>
+  </div>
+
+  <!-- Formulaire -->
+  <div class="px-16 py-14 flex flex-col justify-center">
+    <div class="max-w-[460px] w-full mx-auto">
+      <h2 class="text-[28px] font-extrabold tracking-[-0.02em] mb-[6px]">Créer mon compte</h2>
+      <p class="text-[15px] text-muted mb-7">Déjà inscrit ? <a routerLink="/login" class="text-brand-indigo font-semibold cursor-pointer">Se connecter</a></p>
+
+      <div class="text-[13px] font-semibold text-ink-soft mb-[10px]">Je m'inscris en tant que</div>
+      <div class="grid grid-cols-2 gap-3 mb-6">
+        <div (click)="choice.set('company')" [class.border-brand-indigo]="choice()==='company'" [style.box-shadow]="choice()==='company' ? '0 0 0 3px rgba(99,102,241,.12)' : 'none'" class="relative border border-line rounded-[14px] p-[18px] cursor-pointer transition-all">
+          <span class="w-[42px] h-[42px] rounded-[11px] bg-[#f3f4fe] flex items-center justify-center mb-3 text-brand-indigo"><app-icon name="building" [size]="22" /></span>
+          <div class="font-bold text-[15px]">Une entreprise</div>
+          <div class="text-[13px] text-muted mt-[3px] leading-[1.45]">Je cherche un expert IA</div>
+          @if (choice()==='company') {<span class="absolute top-[14px] right-[14px] text-brand-indigo"><app-icon name="checkCircle" [size]="20" /></span>}
+        </div>
+        <div (click)="choice.set('expert')" [class.border-brand-indigo]="choice()==='expert'" [style.box-shadow]="choice()==='expert' ? '0 0 0 3px rgba(99,102,241,.12)' : 'none'" class="relative border border-line rounded-[14px] p-[18px] cursor-pointer transition-all">
+          <span class="w-[42px] h-[42px] rounded-[11px] bg-[#f3f4fe] flex items-center justify-center mb-3 text-brand-indigo"><app-icon name="target" [size]="22" /></span>
+          <div class="font-bold text-[15px]">Un expert IA</div>
+          <div class="text-[13px] text-muted mt-[3px] leading-[1.45]">Je propose mes services</div>
+          @if (choice()==='expert') {<span class="absolute top-[14px] right-[14px] text-brand-indigo"><app-icon name="checkCircle" [size]="20" /></span>}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div><label class="lbl">Nom complet</label><input class="field h-12" [value]="name()" (input)="name.set($any($event.target).value)" placeholder="Votre nom" /></div>
+        <div><label class="lbl">E-mail</label><input class="field h-12" type="email" [value]="email()" (input)="email.set($any($event.target).value)" placeholder="vous@entreprise.com" /></div>
+        <div><label class="lbl">Mot de passe</label><input class="field h-12" type="password" [value]="pass()" (input)="pass.set($any($event.target).value)" placeholder="8 caractères minimum" /></div>
+        <button (click)="submit()" class="btn-grad h-[50px] text-base mt-[6px]">Créer mon compte</button>
+        <p class="text-xs text-[#9aa3b2] text-center leading-[1.5] mt-[2px]">En créant un compte, vous acceptez nos conditions d'utilisation et notre politique de confidentialité.</p>
+      </div>
+    </div>
+  </div>
+</div>

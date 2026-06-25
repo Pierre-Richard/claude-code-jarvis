@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* ===========================================================
+   IApreneur — thème Tailwind (design tokens de la maquette)
+   =========================================================== */
+@theme {
+  --color-ink: #0a1628;
+  --color-ink-soft: #3a4a63;
+  --color-muted: #6b7789;
+  --color-line: #e7e9ef;
+  --color-bg: #fafafa;
+  --color-card: #ffffff;
+  --color-brand-indigo: #6366f1;
+  --color-brand-cyan: #06b6d4;
+  --color-brand-violet: #4f46e5;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(10, 22, 40, 0.04), 0 12px 32px rgba(10, 22, 40, 0.05);
+  --shadow-hover: 0 18px 38px rgba(10, 22, 40, 0.1);
+  --shadow-glow: 0 6px 16px rgba(99, 102, 241, 0.28);
+}
+
+@layer base {
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Classes composées réutilisées (fidèles à la maquette) */
+@layer components {
+  /* Dégradés signature */
+  .grad-120 { background-image: linear-gradient(120deg, #6366f1, #06b6d4); }
+  .grad-135 { background-image: linear-gradient(135deg, #6366f1, #06b6d4); }
+  .grad-155 { background-image: linear-gradient(155deg, #6366f1, #06b6d4); }
+  .grad-text {
+    background-image: linear-gradient(120deg, #6366f1, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply bg-card border border-line rounded-2xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Boutons */
+  .btn-grad {
+    @apply text-white font-semibold rounded-xl cursor-pointer border-0 inline-flex items-center justify-center gap-2;
+    background-image: linear-gradient(120deg, #6366f1, #06b6d4);
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-ghost {
+    @apply bg-white text-ink-soft font-semibold rounded-xl border border-line cursor-pointer inline-flex items-center justify-center gap-2;
+  }
+  .btn-ghost:hover { @apply bg-[#f4f5fb]; }
+
+  /* Formulaires */
+  .lbl { @apply block text-[13px] font-semibold text-ink-soft mb-[7px]; }
+  .field {
+    @apply w-full border border-line rounded-xl px-[14px] text-[15px] outline-none bg-white text-ink;
+  }
+  .field:focus {
+    @apply border-brand-indigo;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+  }
+
+  /* Chips / toggles */
+  .chip {
+    @apply text-[13px] px-[15px] py-2 rounded-full border border-line bg-white text-ink-soft cursor-pointer font-medium transition-all;
+  }
+  .chip:hover { @apply border-[#cfd4e2]; }
+  .chip-active {
+    @apply text-white border-transparent;
+    background-image: linear-gradient(120deg, #6366f1, #06b6d4);
+  }
+  .toggle {
+    @apply text-[13px] px-[14px] py-2 rounded-full border border-line bg-white text-ink-soft cursor-pointer font-medium transition-all;
+  }
+  .toggle-on { @apply bg-[#eef0fe] text-brand-violet border-transparent font-semibold; }
+
+  /* Navigation du shell */
+  .nav-link {
+    @apply flex items-center gap-[11px] px-3 py-[10px] rounded-[11px] text-sm font-medium text-ink-soft cursor-pointer no-underline transition-colors;
+  }
+  .nav-link:hover { @apply bg-[#f4f5fb]; }
+  .nav-link-active { @apply bg-[#eef0fe] text-brand-violet font-semibold; }
+  .role-tab {
+    @apply flex-1 text-center text-xs font-semibold py-[7px] rounded-[9px] cursor-pointer text-muted transition-all;
+  }
+  .role-tab-active {
+    @apply bg-white text-brand-violet;
+    box-shadow: 0 1px 3px rgba(10, 22, 40, 0.1);
+  }
+}

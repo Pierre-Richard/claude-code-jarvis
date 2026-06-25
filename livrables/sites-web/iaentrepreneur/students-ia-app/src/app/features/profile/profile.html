@@ -1,0 +1,70 @@
+<div class="max-w-[780px]">
+  <div class="card rounded-[18px] p-8">
+
+    <!-- En-tête -->
+    <div class="flex items-center gap-[18px] mb-7">
+      <div class="relative">
+        <div class="w-[84px] h-[84px] rounded-[20px] grad-135 flex items-center justify-center text-white font-bold text-[30px]">{{ state.userInitials() }}</div>
+        <div class="absolute -bottom-1 -right-1 w-[30px] h-[30px] rounded-[9px] bg-white border border-line flex items-center justify-center cursor-pointer text-muted"><app-icon name="upload" [size]="15" /></div>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-[22px] font-extrabold tracking-[-0.02em] m-0">{{ state.userName() }}</h1>
+          @if (role()==='expert') {<span class="inline-flex items-center gap-[5px] bg-[#eef0fe] text-brand-violet text-xs font-bold px-[11px] py-[5px] rounded-full"><app-icon name="badge" [size]="14" /> Certifié</span>}
+        </div>
+        <div class="text-sm text-muted mt-1">{{ role()==='expert' ? 'Membre depuis mars 2024 · Académie IApreneur' : 'Compte entreprise · IApreneur' }}</div>
+      </div>
+    </div>
+
+    @if (role()==='expert') {
+      <!-- PROFIL EXPERT -->
+      <div class="flex flex-col gap-[22px]">
+        <div><label class="lbl">Titre / Headline</label><input class="field h-[46px]" value="Expert NLP & LLM — Assistants conversationnels d'entreprise" /></div>
+        <div><label class="lbl">Bio</label><textarea class="field py-[13px] leading-[1.6] resize-none" rows="3">11 ans d'expérience sur les modèles de langage. J'accompagne les entreprises de la preuve de concept à la mise en production d'assistants IA fiables et sécurisés.</textarea></div>
+        <div>
+          <label class="lbl">Domaines d'expertise</label>
+          <div class="flex flex-wrap gap-2">
+            @for (x of expertises; track x) {
+              <div class="toggle" [class.toggle-on]="selExpertise().includes(x)" (click)="toggle('exp', x)">{{ x }}</div>
+            }
+          </div>
+        </div>
+        <div>
+          <label class="lbl">Secteurs</label>
+          <div class="flex flex-wrap gap-2">
+            @for (s of secteurs; track s) {
+              <div class="toggle" [class.toggle-on]="selSecteurs().includes(s)" (click)="toggle('sec', s)">{{ s }}</div>
+            }
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div><label class="lbl">Langues</label><input class="field h-[46px]" value="FR · EN · AR" /></div>
+          <div><label class="lbl">Années d'expérience</label><input class="field h-[46px]" value="11" /></div>
+          <div><label class="lbl">TJM (€/jour)</label><input class="field h-[46px]" value="900" /></div>
+        </div>
+        <div class="flex items-center justify-between px-[18px] py-4 bg-bg border border-[#eef0f5] rounded-xl">
+          <div><div class="font-semibold text-[15px]">Disponible pour des missions</div><div class="text-[13px] text-muted mt-[2px]">Apparaître dans les résultats de matching</div></div>
+          <div (click)="available.set(!available())" class="w-[46px] h-[26px] rounded-full cursor-pointer relative transition-colors" [style.background]="available() ? 'linear-gradient(120deg,#6366F1,#06B6D4)' : '#d6dae6'">
+            <div class="absolute top-[3px] w-5 h-5 rounded-full bg-white shadow transition-[left]" [style.left]="available() ? '23px' : '3px'"></div>
+          </div>
+        </div>
+        <div class="flex justify-end"><button class="btn-grad h-[46px] px-6 text-[15px]">Enregistrer les modifications</button></div>
+      </div>
+    } @else {
+      <!-- PROFIL ENTREPRISE -->
+      <div class="flex flex-col gap-[22px]">
+        <div><label class="lbl">Nom de l'entreprise</label><input class="field h-[46px]" value="Acme Retail" /></div>
+        <div><label class="lbl">Description</label><textarea class="field py-[13px] leading-[1.6] resize-none" rows="3">Groupe de distribution omnicanal cherchant à intégrer l'IA dans son support client et sa logistique.</textarea></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label class="lbl">Secteur</label>
+            <select class="field h-[46px]">@for (s of secteurs; track s) {<option [value]="s">{{ s }}</option>}</select>
+          </div>
+          <div><label class="lbl">Taille</label>
+            <select class="field h-[46px]"><option>1-10</option><option>11-50</option><option selected>51-200</option><option>200+</option></select>
+          </div>
+        </div>
+        <div class="flex justify-end"><button class="btn-grad h-[46px] px-6 text-[15px]">Enregistrer les modifications</button></div>
+      </div>
+    }
+  </div>
+</div>

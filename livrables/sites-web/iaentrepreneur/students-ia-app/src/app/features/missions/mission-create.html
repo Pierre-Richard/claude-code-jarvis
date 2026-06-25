@@ -1,0 +1,28 @@
+<div class="max-w-[760px]">
+  <div (click)="back()" class="inline-flex items-center gap-[6px] text-sm text-muted cursor-pointer mb-[18px] hover:text-ink"><app-icon name="arrowLeft" [size]="17" /><span>Retour au tableau de bord</span></div>
+  <div class="card rounded-[18px] p-8">
+    <h1 class="text-[22px] font-extrabold tracking-[-0.02em] mb-[6px]">Décrivez votre besoin</h1>
+    <p class="text-sm text-muted mb-7 leading-[1.6]">Notre algorithme de matching vous proposera des experts certifiés adaptés sous 24 h.</p>
+    <div class="flex flex-col gap-5">
+      <div><label class="lbl">Titre de la mission</label><input class="field h-[46px]" [value]="title()" (input)="title.set($any($event.target).value)" placeholder="Ex. Assistant IA pour le support client" /></div>
+      <div><label class="lbl">Description</label><textarea class="field py-[13px] leading-[1.6] resize-none" rows="4" [value]="desc()" (input)="desc.set($any($event.target).value)" placeholder="Objectifs, contexte, livrables attendus…"></textarea></div>
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="lbl">Secteur</label>
+          <select class="field h-[46px]" [value]="secteur()" (change)="secteur.set($any($event.target).value)">
+            @for (s of secteurs; track s) {<option [value]="s">{{ s }}</option>}
+          </select>
+        </div>
+        <div><label class="lbl">Expertise recherchée</label>
+          <select class="field h-[46px]" [value]="expertise()" (change)="expertise.set($any($event.target).value)">
+            @for (x of expertises; track x) {<option [value]="x">{{ x }}</option>}
+          </select>
+        </div>
+      </div>
+      <div><label class="lbl">Budget indicatif (€)</label><input class="field h-[46px]" [value]="budget()" (input)="budget.set($any($event.target).value)" placeholder="Ex. 15000" /></div>
+      <div class="flex items-center justify-end gap-3 mt-2">
+        <button (click)="back()" class="btn-ghost h-[46px] px-5 text-[15px]">Annuler</button>
+        <button (click)="publish()" class="btn-grad h-[46px] px-6 text-[15px]">Publier la mission</button>
+      </div>
+    </div>
+  </div>
+</div>

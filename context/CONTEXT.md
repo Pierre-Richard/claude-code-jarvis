@@ -53,7 +53,10 @@ Développeur fullstack Angular / C# .NET avec 5 ans d'expérience. Je conçois e
 Liste des projets ou chantiers actifs sur lesquels je veux que Claude m'aide :
 
 - **Side project / Projet d'école :** application de gestion scolaire (gestion des élèves, appels, absences, agenda, devoirs, messagerie instantanée)
-- **Students IA (iaentrepreneur) :** nouveau projet perso. Marketplace mettant en relation des entreprises avec des experts IA certifiés (NLP/LLM, MLOps, Computer Vision, Data Strategy...), avec une Académie de certification, paiement sous séquestre et modèle à la commission. Premier livrable : site vitrine en Angular 21 (standalone, signals, lazy loading, multi-pages) + landing statique, sous `livrables/sites-web/iaentrepreneur/`
+- **IApreneur (ex-Students IA, dossier iaentrepreneur) :** projet perso. Marketplace mettant en relation des entreprises avec des experts IA certifiés (NLP/LLM, MLOps, Computer Vision, Data Strategy...), avec une Académie de certification, matching et modèle à la commission (15 %). Le nom du produit est passé de "Students IA" à **IApreneur** (la vitrine déjà livrée garde le nom Students IA). Construction du MVP en cours :
+  - **Architecture hybride** : Supabase (Auth, Storage, Realtime, Postgres + RLS) + API ASP.NET Core (matching, missions, paiement) + front Angular 21
+  - **Périmètre MVP** : auth entreprise/expert (+ UI admin de validation), profils, annuaire/recherche, mise en relation, messagerie temps réel, cycle de mission à 5 statuts, dashboards par rôle, paiement simulé
+  - **Avancement** : vitrine livrée ; fondations back posées (solution .NET 4 projets + EF Core/migration + script SQL Supabase) ; app produit Angular `students-ia-app/` implémentée à partir de la maquette Claude Design (UI complète sur données mockées, à brancher sur Supabase/.NET)
 - **Recherche d'emploi :** recherche active d'un nouveau poste de développeur fullstack
 
 ---

@@ -7,6 +7,23 @@
 
 ---
 
+## 2026-06-25
+
+### Renommage en IApreneur + démarrage du MVP
+- Le projet perso est renommé **IApreneur** (ex-Students IA). La vitrine déjà livrée conserve le nom Students IA ; le produit (app) s'appelle désormais IApreneur. Dossier inchangé : `livrables/sites-web/iaentrepreneur/`
+- Décisions de cadrage du MVP actées avec Pierre-Richard :
+  - Architecture **hybride** : Supabase (Auth, Storage, Realtime, Postgres + RLS) pour l'infra, **ASP.NET Core** pour la logique métier (matching, missions, paiement), front **Angular 21**. Choix motivé par la montée en compétence .NET
+  - Périmètre **MVP standard** : auth entreprise/expert, profils, annuaire + recherche, mise en relation, messagerie temps réel, cycle de mission à 5 statuts, dashboards. Ajout décidé d'une **UI admin** (validation/certification des experts)
+  - **Paiement simulé** (pas de Stripe Connect en v1), commission plateforme unique **15 %**
+- Travail réalisé :
+  - **Prompt Claude Design** pour les écrans produit (`prompt-claude-design-app.md`)
+  - **Back .NET** : solution `students-ia-api/` en Clean Architecture (Api/Domain/Application/Infrastructure), 8 entités EF Core, DbContext snake_case, migration initiale, config JWT Supabase + CORS ; script `supabase/setup.sql` (trigger profil, RLS, temps réel)
+  - **Front Angular** : app `students-ia-app/` scaffoldée, design tokens repris de la vitrine, supabase-js installé, client Supabase
+  - **Implémentation de la maquette IApreneur** (importée via le MCP Claude Design) : 11 écrans Angular (auth, dashboards entreprise/expert/admin, annuaire, fiche expert, création/détail mission avec stepper, messagerie, profils), standalone + signals, sur données mockées. Build vert
+- Reste à faire : brancher l'UI sur Supabase (auth, données, messagerie) et l'API .NET (missions, matching, paiement). Nécessite la création du projet Supabase par Pierre-Richard
+
+---
+
 ## 2026-06-24
 
 ### Nouveau projet perso : Students IA (iaentrepreneur)

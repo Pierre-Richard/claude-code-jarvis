@@ -1,0 +1,53 @@
+@if (expert(); as e) {
+  <div class="max-w-[960px]">
+    <div (click)="back()" class="inline-flex items-center gap-[6px] text-sm text-muted cursor-pointer mb-[18px] hover:text-ink"><app-icon name="arrowLeft" [size]="17" /><span>Retour à l'annuaire</span></div>
+    <div class="card rounded-[18px] overflow-hidden">
+      <div class="h-24 grad-120"></div>
+      <div class="px-8 pb-8">
+        <div class="flex items-end gap-5 -mt-[44px] mb-6">
+          <div class="w-24 h-24 rounded-[22px] grad-135 border-4 border-white flex items-center justify-center text-white font-bold text-[32px] flex-shrink-0">{{ e.initials }}</div>
+          <div class="flex-1 pb-[6px]">
+            <div class="flex items-center gap-[9px]">
+              <h1 class="text-[26px] font-extrabold tracking-[-0.02em] m-0">{{ e.name }}</h1>
+              @if (e.certified) {<span class="inline-flex items-center gap-[5px] bg-[#eef0fe] text-brand-violet text-xs font-bold px-[11px] py-[5px] rounded-full"><app-icon name="badge" [size]="14" /> Certifié</span>}
+            </div>
+            <div class="text-base text-ink-soft mt-1">{{ e.role }}</div>
+            <div class="flex items-center gap-[6px] mt-2 text-sm"><span class="text-[#f5a623] flex"><app-icon name="star" [size]="15" /></span><span class="font-bold">{{ e.note }}</span><span class="text-[#9aa3b2]">· {{ e.reviews }} avis · {{ e.years }} ans d'expérience</span></div>
+          </div>
+          <div class="text-right pb-[6px]">
+            <div class="text-xs text-[#9aa3b2]">Tarif journalier</div>
+            <div class="font-extrabold text-2xl">{{ euro(e.tjm) }}<span class="text-sm text-[#9aa3b2] font-semibold">/jour</span></div>
+          </div>
+        </div>
+        <div class="flex gap-3 mb-7">
+          <button (click)="launch()" class="btn-grad h-[46px] px-[22px] text-[15px]">Lancer une mission avec cet expert</button>
+          <button (click)="message()" class="btn-ghost h-[46px] px-5 text-[15px] text-ink"><app-icon name="chat" [size]="18" />Envoyer un message</button>
+        </div>
+        <div class="grid grid-cols-[1.5fr_1fr] gap-8">
+          <div>
+            <h3 class="text-sm font-bold text-muted tracking-[.02em] mb-[10px]">À PROPOS</h3>
+            <p class="text-[15px] leading-[1.7] text-ink-soft m-0">{{ e.bio }}</p>
+            <h3 class="text-sm font-bold text-muted tracking-[.02em] mt-7 mb-3">EXPERTISES</h3>
+            <div class="flex flex-wrap gap-2">
+              @for (t of e.tags; track t) {<span class="bg-[#eef0fe] text-brand-violet text-[13px] font-semibold px-[13px] py-[7px] rounded-[9px]">{{ t }}</span>}
+            </div>
+          </div>
+          <div class="bg-bg border border-[#eef0f5] rounded-[14px] p-5">
+            <div class="mb-[18px]">
+              <div class="text-xs font-bold text-[#9aa3b2] tracking-[.04em] mb-2">SECTEURS</div>
+              <div class="flex flex-wrap gap-[6px]">
+                @for (t of e.sectors; track t) {<span class="bg-white border border-line text-ink-soft text-[13px] px-[11px] py-[5px] rounded-lg">{{ t }}</span>}
+              </div>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-[#9aa3b2] tracking-[.04em] mb-2">LANGUES</div>
+              <div class="flex flex-wrap gap-[6px]">
+                @for (t of e.langs; track t) {<span class="bg-white border border-line text-ink-soft text-[13px] px-[11px] py-[5px] rounded-lg">{{ t }}</span>}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

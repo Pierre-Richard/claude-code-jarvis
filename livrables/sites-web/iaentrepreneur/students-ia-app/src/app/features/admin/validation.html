@@ -1,0 +1,34 @@
+<div class="max-w-[1020px]">
+  <p class="text-sm text-muted mb-[22px] leading-[1.6] max-w-[560px]">
+    Vérifiez les profils, l'expérience et les références avant de certifier un expert. Une fois certifié, il apparaît dans l'annuaire avec le badge IApreneur.
+  </p>
+  <div class="flex flex-col gap-[14px]">
+    @for (e of rows(); track e.id) {
+      <div class="card p-[22px]">
+        <div class="flex gap-4 items-start">
+          <div class="w-[54px] h-[54px] rounded-[14px] grad-135 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">{{ e.initials }}</div>
+          <div class="flex-1 min-w-0">
+            <div class="font-bold text-[17px]">{{ e.name }}</div>
+            <div class="text-sm text-ink-soft mt-[2px]">{{ e.role }} · {{ e.years }} ans d'expérience · {{ euro(e.tjm) }}/jour</div>
+            <p class="text-sm text-muted leading-[1.55] mt-[10px]">{{ e.bio }}</p>
+            <div class="flex flex-wrap gap-[6px] mt-3">
+              @for (t of e.tags; track t) {
+                <span class="bg-[#f1f3f8] text-ink-soft text-xs font-medium px-[10px] py-[5px] rounded-lg">{{ t }}</span>
+              }
+            </div>
+          </div>
+          <div class="flex-shrink-0 flex flex-col gap-[10px] items-end">
+            @if (!e.decision) {
+              <button (click)="decide(e, 'approved')" class="btn-grad h-10 px-[18px] text-sm gap-[7px]"><app-icon name="badge" [size]="16" />Certifier</button>
+              <button (click)="decide(e, 'rejected')" class="btn-ghost h-10 px-[18px] text-sm">Refuser</button>
+            } @else if (e.decision==='approved') {
+              <span class="inline-flex items-center gap-[6px] bg-[#dcfce7] text-[#16a34a] text-[13px] font-bold px-[13px] py-[7px] rounded-full"><app-icon name="checkCircle" [size]="16" />Certifié</span>
+            } @else {
+              <span class="inline-flex items-center gap-[6px] bg-[#fdecec] text-[#e5484d] text-[13px] font-bold px-[13px] py-[7px] rounded-full">Refusé</span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
