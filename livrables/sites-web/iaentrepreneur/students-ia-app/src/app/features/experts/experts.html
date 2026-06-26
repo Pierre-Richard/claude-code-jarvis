@@ -24,7 +24,7 @@
   <div class="text-[13px] text-muted mb-4">{{ filtered().length }} experts certifiés correspondent à votre recherche</div>
 
   @if (filtered().length) {
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(346px,1fr))] gap-[18px]">
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-[18px]">
       @for (e of filtered(); track e.id) {
         <div class="card p-[22px] transition-transform hover:-translate-y-[3px] flex flex-col">
           <div class="flex gap-[14px] mb-[14px]">

@@ -5,7 +5,7 @@
   <div class="flex flex-col gap-[14px]">
     @for (e of rows(); track e.id) {
       <div class="card p-[22px]">
-        <div class="flex gap-4 items-start">
+        <div class="flex flex-col sm:flex-row gap-4 items-start">
           <div class="w-[54px] h-[54px] rounded-[14px] grad-135 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">{{ e.initials }}</div>
           <div class="flex-1 min-w-0">
             <div class="font-bold text-[17px]">{{ e.name }}</div>

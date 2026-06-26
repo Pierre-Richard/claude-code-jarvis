@@ -23,13 +23,24 @@ returns trigger
 language plpgsql
 security definer set search_path = public
 as $$
+declare
+  v_role text := coalesce(new.raw_user_meta_data ->> 'role', 'Entreprise');
+  v_name text := coalesce(new.raw_user_meta_data ->> 'full_name', '');
 begin
   insert into public.profiles (id, role, full_name)
-  values (
-    new.id,
-    coalesce(new.raw_user_meta_data ->> 'role', 'Entreprise'),
-    coalesce(new.raw_user_meta_data ->> 'full_name', '')
-  );
+  values (new.id, v_role, v_name);
+
+  -- Crée la ligne métier correspondant au rôle.
+  if v_role = 'Expert' then
+    insert into public.experts (profile_id, expertise, sectors, experience_years, daily_rate, rating, certified, available)
+    values (new.id, '{}', '{}', 0, 0, 0, false, true)
+    on conflict (profile_id) do nothing;
+  else
+    insert into public.companies (profile_id, company_name)
+    values (new.id, coalesce(nullif(v_name, ''), 'Mon entreprise'))
+    on conflict (profile_id) do nothing;
+  end if;
+
   return new;
 end;
 $$;

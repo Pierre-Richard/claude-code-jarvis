@@ -37,7 +37,7 @@
             }
           </div>
         </div>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div><label class="lbl">Langues</label><input class="field h-[46px]" value="FR · EN · AR" /></div>
           <div><label class="lbl">Années d'expérience</label><input class="field h-[46px]" value="11" /></div>
           <div><label class="lbl">TJM (€/jour)</label><input class="field h-[46px]" value="900" /></div>
@@ -55,7 +55,7 @@
       <div class="flex flex-col gap-[22px]">
         <div><label class="lbl">Nom de l'entreprise</label><input class="field h-[46px]" value="Acme Retail" /></div>
         <div><label class="lbl">Description</label><textarea class="field py-[13px] leading-[1.6] resize-none" rows="3">Groupe de distribution omnicanal cherchant à intégrer l'IA dans son support client et sa logistique.</textarea></div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div><label class="lbl">Secteur</label>
             <select class="field h-[46px]">@for (s of secteurs; track s) {<option [value]="s">{{ s }}</option>}</select>
           </div>

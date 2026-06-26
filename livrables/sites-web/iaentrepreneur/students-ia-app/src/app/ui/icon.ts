@@ -24,6 +24,8 @@ const ICONS: Record<string, string> = {
   check: '<path d="M20 6 9 17l-5-5"/>',
   users: '<circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7M21 20a6 6 0 0 0-4-5.7"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  menu: '<path d="M3 12h18M3 6h18M3 18h18"/>',
+  close: '<path d="M18 6 6 18M6 6l12 12"/>',
 };
 
 @Component({

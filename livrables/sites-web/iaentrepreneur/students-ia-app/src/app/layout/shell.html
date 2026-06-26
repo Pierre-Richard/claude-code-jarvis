@@ -1,12 +1,18 @@
 <div class="flex min-h-screen bg-bg">
-  <!-- SIDEBAR -->
-  <aside class="w-[268px] flex-shrink-0 bg-white border-r border-line flex flex-col sticky top-0 h-screen">
+  <!-- Backdrop mobile -->
+  @if (sidebarOpen()) {
+    <div (click)="sidebarOpen.set(false)" class="fixed inset-0 bg-black/40 z-40 md:hidden"></div>
+  }
+
+  <!-- SIDEBAR (drawer sur mobile, fixe sur desktop) -->
+  <aside [class.-translate-x-full]="!sidebarOpen()" class="fixed md:sticky top-0 left-0 z-50 w-[268px] h-screen flex-shrink-0 bg-white border-r border-line flex flex-col md:translate-x-0 transition-transform duration-200">
     <div class="px-[22px] pt-6 pb-[18px] flex items-center gap-3">
       <div class="w-[38px] h-[38px] rounded-[11px] grad-135 flex items-center justify-center text-white font-extrabold text-lg shadow-[0_6px_16px_rgba(99,102,241,.32)]">I</div>
-      <div class="flex flex-col leading-[1.1]">
+      <div class="flex flex-col leading-[1.1] flex-1">
         <span class="font-bold text-base tracking-[-0.02em]"><span class="text-brand-indigo">IA</span>preneur</span>
         <span class="text-[11px] text-muted tracking-[.04em]">MARKETPLACE EXPERTS IA</span>
       </div>
+      <button (click)="sidebarOpen.set(false)" class="md:hidden text-muted p-1"><app-icon name="close" [size]="20" /></button>
     </div>
 
     <nav class="flex-1 p-[14px] flex flex-col gap-1 overflow-auto">
@@ -49,31 +55,32 @@
 
   <!-- MAIN -->
   <div class="flex-1 min-w-0 flex flex-col">
-    <header class="sticky top-0 z-20 flex items-center gap-5 px-10 py-4 bg-[rgba(250,250,250,.78)] backdrop-blur-[14px] border-b border-line">
-      <div class="min-w-0">
-        <div class="text-xl font-bold tracking-[-0.02em] whitespace-nowrap">{{ page().title }}</div>
-        <div class="text-[13px] text-muted whitespace-nowrap">{{ page().subtitle }}</div>
+    <header class="sticky top-0 z-20 flex items-center gap-3 sm:gap-5 px-4 sm:px-6 md:px-10 py-3 sm:py-4 bg-[rgba(250,250,250,.78)] backdrop-blur-[14px] border-b border-line">
+      <button (click)="sidebarOpen.set(true)" class="md:hidden w-[42px] h-[42px] flex items-center justify-center rounded-xl border border-line bg-white text-ink-soft flex-shrink-0"><app-icon name="menu" [size]="20" /></button>
+      <div class="min-w-0 flex-1 md:flex-none">
+        <div class="text-base sm:text-xl font-bold tracking-[-0.02em] truncate">{{ page().title }}</div>
+        <div class="text-[13px] text-muted whitespace-nowrap hidden sm:block">{{ page().subtitle }}</div>
       </div>
-      <div class="flex-1 flex justify-center max-w-[440px] mx-auto w-full">
+      <div class="flex-1 justify-center max-w-[440px] mx-auto w-full hidden md:flex">
         <div class="relative w-full">
           <span class="absolute left-[13px] top-1/2 -translate-y-1/2 text-[#9aa3b2]"><app-icon name="search" [size]="18" /></span>
           <input placeholder="Rechercher un expert, une mission…" class="field h-[42px] pl-10 text-sm" />
         </div>
       </div>
-      <div class="flex items-center gap-3 flex-shrink-0">
+      <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <div class="relative w-[42px] h-[42px] border border-line rounded-xl bg-white flex items-center justify-center cursor-pointer text-ink-soft hover:bg-[#f4f5fb]">
           <app-icon name="bell" [size]="19" />
           <span class="absolute top-[9px] right-[10px] w-2 h-2 rounded-full bg-brand-cyan border-2 border-white"></span>
         </div>
         @if (page().primaryLabel) {
-          <button (click)="goPrimary()" class="btn-grad h-[42px] px-[18px] text-sm">
-            <app-icon name="plus" [size]="18" /><span>{{ page().primaryLabel }}</span>
+          <button (click)="goPrimary()" class="btn-grad h-[42px] px-3 sm:px-[18px] text-sm">
+            <app-icon name="plus" [size]="18" /><span class="hidden sm:inline">{{ page().primaryLabel }}</span>
           </button>
         }
       </div>
     </header>
 
-    <main class="flex-1 px-10 pt-[34px] pb-[72px]">
+    <main class="flex-1 px-4 sm:px-6 md:px-10 pt-6 md:pt-[34px] pb-[72px]">
       <router-outlet />
     </main>
   </div>

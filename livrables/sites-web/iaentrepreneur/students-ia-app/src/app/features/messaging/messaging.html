@@ -1,7 +1,7 @@
 <div class="h-[calc(100vh-200px)] min-h-[520px]">
-  <div class="grid grid-cols-[320px_1fr] h-full card rounded-[18px] overflow-hidden">
+  <div class="grid grid-rows-[auto_1fr] md:grid-rows-1 grid-cols-1 md:grid-cols-[300px_1fr] h-full card rounded-[18px] overflow-hidden">
     <!-- Liste conversations -->
-    <div class="border-r border-[#eef0f5] flex flex-col">
+    <div class="border-b md:border-b-0 md:border-r border-[#eef0f5] flex flex-col max-h-[38vh] md:max-h-none">
       <div class="px-5 py-[18px] border-b border-[#eef0f5] font-bold text-base">Conversations</div>
       <div class="flex-1 overflow-auto">
         @for (c of conversations; track c.id) {

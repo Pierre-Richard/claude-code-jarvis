@@ -20,6 +20,7 @@ export class ShellComponent {
   private readonly router = inject(Router);
   protected readonly role = this.state.role;
   protected readonly menuOpen = signal(false);
+  protected readonly sidebarOpen = signal(false);
   private readonly url = signal(this.router.url);
 
   private readonly nav: NavItem[] = [
@@ -51,6 +52,7 @@ export class ShellComponent {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => {
       this.url.set((e as NavigationEnd).urlAfterRedirects);
       this.menuOpen.set(false);
+      this.sidebarOpen.set(false);
     });
   }
 
