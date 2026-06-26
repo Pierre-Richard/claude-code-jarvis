@@ -7,6 +7,11 @@ using StudentsIA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --- Port d'écoute : Render/Railway injectent la variable d'environnement PORT ---
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 // --- Base de données (Supabase Postgres via EF Core) ---
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection manquante.");
@@ -46,10 +51,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// --- CORS pour l'app Angular (dev) ---
-const string AngularCors = "AngularDev";
+// --- CORS pour l'app Angular ---
+// localhost en dev + le(s) domaine(s) de prod (Vercel) fournis via "Cors:AllowedOrigins".
+const string AngularCors = "AngularApp";
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+    ?? Array.Empty<string>();
+var corsOrigins = new[] { "http://localhost:4200" }.Concat(allowedOrigins).Distinct().ToArray();
 builder.Services.AddCors(o => o.AddPolicy(AngularCors, p => p
-    .WithOrigins("http://localhost:4200")
+    .WithOrigins(corsOrigins)
     .AllowAnyHeader()
     .AllowAnyMethod()));
 
@@ -63,7 +72,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// En prod, la terminaison TLS est gérée par le proxy de Render/Railway : pas de redirection ici.
+if (app.Environment.IsDevelopment())
+    app.UseHttpsRedirection();
 app.UseCors(AngularCors);
 app.UseAuthentication();
 app.UseAuthorization();
