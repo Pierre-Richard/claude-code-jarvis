@@ -7,10 +7,9 @@ using StudentsIA.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- Port d'écoute : Render/Railway injectent la variable d'environnement PORT ---
-var port = Environment.GetEnvironmentVariable("PORT");
-if (!string.IsNullOrEmpty(port))
-    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+// --- Port d'écoute : PORT si fourni (Railway), sinon 10000 (port routé par défaut chez Render) ---
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // --- Base de données (Supabase Postgres via EF Core) ---
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")

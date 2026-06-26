@@ -25,7 +25,7 @@ COPY --from=build /app/publish .
 
 # Port d'écoute par défaut. Render/Railway peuvent surcharger via la variable PORT
 # (gérée aussi dans Program.cs).
-ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:10000
+EXPOSE 10000
 
 ENTRYPOINT ["dotnet", "StudentsIA.Api.dll"]
