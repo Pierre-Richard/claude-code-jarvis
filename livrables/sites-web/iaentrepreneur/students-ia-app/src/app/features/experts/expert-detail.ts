@@ -29,5 +29,9 @@ export class ExpertDetailComponent {
   protected euro = (n: number) => new Intl.NumberFormat('fr-FR').format(n) + ' €';
   protected back = () => this.router.navigateByUrl('/app/experts');
   protected launch = () => this.router.navigateByUrl('/app/missions/new');
-  protected message = () => this.router.navigateByUrl('/app/messages');
+  protected message(): void {
+    const e = this.expert();
+    if (!e) return;
+    this.router.navigate(['/app/messages'], { queryParams: { name: e.name, initials: e.initials } });
+  }
 }

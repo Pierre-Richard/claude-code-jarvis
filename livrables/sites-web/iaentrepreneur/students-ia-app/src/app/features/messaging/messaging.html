@@ -4,8 +4,8 @@
     <div class="border-b md:border-b-0 md:border-r border-[#eef0f5] flex flex-col max-h-[38vh] md:max-h-none">
       <div class="px-5 py-[18px] border-b border-[#eef0f5] font-bold text-base">Conversations</div>
       <div class="flex-1 overflow-auto">
-        @for (c of conversations; track c.id) {
-          <div (click)="activeId.set(c.id)" class="flex gap-3 px-[18px] py-[14px] cursor-pointer border-b border-[#f4f5f9]" [style.background]="activeId()===c.id ? '#f4f5fb' : 'transparent'">
+        @for (c of conversations(); track c.id) {
+          <div (click)="select(c.id)" class="flex gap-3 px-[18px] py-[14px] cursor-pointer border-b border-[#f4f5f9]" [style.background]="activeId()===c.id ? '#f4f5fb' : 'transparent'">
             <div class="w-[42px] h-[42px] rounded-xl grad-135 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">{{ c.initials }}</div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center justify-between gap-2"><span class="font-semibold text-sm whitespace-nowrap overflow-hidden text-ellipsis">{{ c.name }}</span><span class="text-xs text-[#9aa3b2] flex-shrink-0">{{ c.time }}</span></div>

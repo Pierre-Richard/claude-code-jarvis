@@ -29,11 +29,6 @@
     </nav>
 
     <div class="p-[14px] border-t border-[#eef0f5]">
-      <div class="bg-bg border border-[#eef0f5] rounded-xl p-1 flex gap-[3px] mb-3">
-        <div class="role-tab" [class.role-tab-active]="role()==='company'" (click)="setRole('company')">Entreprise</div>
-        <div class="role-tab" [class.role-tab-active]="role()==='expert'" (click)="setRole('expert')">Expert</div>
-        <div class="role-tab" [class.role-tab-active]="role()==='admin'" (click)="setRole('admin')">Admin</div>
-      </div>
       <div class="relative">
         <div (click)="menuOpen.set(!menuOpen())" class="flex items-center gap-[11px] p-2 rounded-xl cursor-pointer hover:bg-[#f4f5fb]">
           <div class="w-[38px] h-[38px] rounded-[11px] grad-135 flex items-center justify-center text-white font-bold text-sm">{{ state.userInitials() }}</div>

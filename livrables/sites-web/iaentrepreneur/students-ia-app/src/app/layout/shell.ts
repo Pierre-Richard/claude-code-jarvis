@@ -27,7 +27,7 @@ export class ShellComponent {
     { label: 'Tableau de bord', icon: 'grid', route: '/app/dashboard', roles: ['company', 'expert', 'admin'] },
     { label: 'Annuaire experts', icon: 'users', route: '/app/experts', roles: ['company', 'expert', 'admin'] },
     { label: 'Validation experts', icon: 'badge', route: '/app/admin/validation', roles: ['admin'] },
-    { label: 'Messagerie', icon: 'chat', route: '/app/messages', badge: '2', roles: ['company', 'expert', 'admin'] },
+    { label: 'Messagerie', icon: 'chat', route: '/app/messages', roles: ['company', 'expert', 'admin'] },
     { label: 'Mon profil', icon: 'user', route: '/app/profile', roles: ['company', 'expert'] },
   ];
 
@@ -54,10 +54,6 @@ export class ShellComponent {
       this.menuOpen.set(false);
       this.sidebarOpen.set(false);
     });
-  }
-
-  protected setRole(role: Role): void {
-    this.state.setRole(role);
   }
 
   protected goPrimary(): void {

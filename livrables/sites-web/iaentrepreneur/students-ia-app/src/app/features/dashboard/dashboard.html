@@ -1,6 +1,6 @@
 <!-- ENTREPRISE -->
 @if (role()==='company') {
-  <div class="max-w-[1180px]">
+  <div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-[18px] mb-[26px]">
       @for (s of companyStats(); track s.label) {
         <div class="card p-[22px]">
@@ -51,7 +51,7 @@
 
 <!-- EXPERT -->
 @if (role()==='expert') {
-  <div class="max-w-[1180px]">
+  <div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-[18px] mb-[26px]">
       @for (s of expertStats(); track s.label) {
         <div class="card p-[22px]">
@@ -117,7 +117,7 @@
 
 <!-- ADMIN -->
 @if (role()==='admin') {
-  <div class="max-w-[1180px]">
+  <div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-[18px] mb-[26px]">
       @for (s of adminStats; track s.label) {
         <div class="card p-[22px]">

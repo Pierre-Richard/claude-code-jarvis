@@ -20,8 +20,20 @@ public class MissionService(IApplicationDbContext db) : IMissionService
 
     public async Task<MissionDto> CreateAsync(Guid userId, CreateMissionRequest request, CancellationToken ct = default)
     {
-        var company = await db.Companies.FirstOrDefaultAsync(c => c.ProfileId == userId, ct)
-            ?? throw new InvalidOperationException("Seule une entreprise peut créer une mission.");
+        var company = await db.Companies.FirstOrDefaultAsync(c => c.ProfileId == userId, ct);
+        if (company is null)
+        {
+            var profile = await db.Profiles.FirstOrDefaultAsync(p => p.Id == userId, ct);
+            if (profile?.Role != UserRole.Entreprise)
+                throw new InvalidOperationException("Seule une entreprise peut créer une mission.");
+            company = new Company
+            {
+                ProfileId = userId,
+                CompanyName = string.IsNullOrWhiteSpace(profile.FullName) ? "Mon entreprise" : profile.FullName,
+            };
+            db.Companies.Add(company);
+            await db.SaveChangesAsync(ct);
+        }
 
         var mission = new Mission
         {
